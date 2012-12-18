@@ -4,7 +4,7 @@ from zope.schema import ASCIILine
 
 
 class IGSPostPrivacyContentProvider(Interface):
-    pageTemplateFileName = Text(title=u"Page Template File Name",
+    pageTemplateFileName = ASCIILine(title=u"Page Template File Name",
         description=u"""The name of the ZPT file
         that is used to render the post.""",
         required=False,
