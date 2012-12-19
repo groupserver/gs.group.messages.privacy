@@ -1,2 +1,2 @@
-# coding=utf-8
-# This space deliberately left blank
+# -*- coding: utf-8 -*-
+from privacy import MessagesPrivacy  # lint:ok
