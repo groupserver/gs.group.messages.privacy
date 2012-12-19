@@ -1,0 +1,19 @@
+<div class="gs-group-messages-privacy" title="Privacy"
+     tal:attributes="title string:Post visibility: ${options/visibility}">
+  <ul>
+    <li>
+      <span class="grouping" 
+            tal:content="structure options/webVisibility">Party people</span> 
+      will be able to see your post on the web, and
+      <span class="grouping" 
+            tal:content="structure options/emailVisibility">party people</span>
+    will receive an email from you.</li>
+    <li>
+      Your post on the <strong>web</strong> will contain your 
+      message, and link to your profile. 
+    Your email address will be hidden.</li>
+    <li>
+      The <strong>email</strong> will contain your message, your
+    email address, and a link to your post on the web.</li>
+  </ul>
+</div><!--gs-group-messages-privacy-->
