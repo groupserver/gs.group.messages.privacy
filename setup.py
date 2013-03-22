@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 import os
 from setuptools import setup, find_packages
 from version import get_version
@@ -32,9 +32,14 @@ setup(name='gs.group.messages.privacy',
     zip_safe=True,
     install_requires=[
         'setuptools',
-        # -*- Extra requirements: -*-
+        'AccessControl',
+        'zope.cachedescriptors',
+        'zope.contentprovider',
+        'zope.interface',
+        'zope.pagetemplate',
+        'zope.schema',
+        'gs.group.base',
     ],
     entry_points="""
     # -*- Entry points: -*-
     """,)
-
