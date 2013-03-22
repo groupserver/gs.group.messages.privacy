@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from zope.contentprovider.interfaces import UpdateNotCalled
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
-from gs.group.base.contentprovider import GroupContentProvider
+from gs.group.base import GroupContentProvider
 from privacy import MessagesPrivacy
 
 
