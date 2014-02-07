@@ -2,15 +2,15 @@
      tal:attributes="title string:Post visibility: ${options/visibility}">
   <ul>
     <li>
-      <span class="grouping" 
-            tal:content="structure options/webVisibility">Party people</span> 
+      <span class="grouping"
+            tal:content="structure options/webVisibility">Party people</span>
       will be able to see your post on the web, and
-      <span class="grouping" 
+      <span class="grouping"
             tal:content="structure options/emailVisibility">party people</span>
     will receive an email from you.</li>
     <li>
-      Your post on the <strong>web</strong> will contain your 
-      message, and link to your profile. 
+      Your post on the <strong>web</strong> will contain your
+      message, and link to your profile.
     Your email address will be hidden.</li>
     <li>
       The <strong>email</strong> will contain your message, your
