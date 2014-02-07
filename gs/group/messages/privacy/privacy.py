@@ -14,38 +14,32 @@
 ##############################################################################
 from __future__ import unicode_literals
 from zope.cachedescriptors.property import Lazy
-from AccessControl.PermissionRole import rolesForPermissionOn
+from gs.group.privacy import get_visibility, PERM_ANN, PERM_GRP, PERM_SIT
 
 
 class MessagesPrivacy(object):
 
     def __init__(self, messages):
+        print messages
         self.context = self.messages = messages
 
     @Lazy
-    def roles(self):
-        retval = rolesForPermissionOn('View', self.messages)
+    def permission(self):
+        retval = get_visibility(self.messages)
         return retval
 
-    @Lazy
+    @property
     def anon(self):
-        retval = 'Anonymous' in self.roles
-        assert type(retval) == bool
-        return retval
+        return self.permission == PERM_ANN
 
-    @Lazy
+    @property
     def site(self):
-        retval = 'DivisionMember' in self.roles
-        assert type(retval) == bool
-        return retval
-
-    @Lazy
-    def group(self):
-        retval = 'GroupMember' in self.roles
-        assert type(retval) == bool
-        return retval
+        return self.permission == PERM_SIT
 
     @Lazy
     def visibility(self):
-        retval = (self.anon and 'public') or 'private'
+        d = {PERM_ANN: 'public',
+            PERM_GRP: 'private',
+            PERM_SIT: 'restricted to site members', }
+        retval = d.get(self.permission, 'odd')
         return retval
