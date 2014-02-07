@@ -14,6 +14,8 @@
 ##############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.contentprovider.interfaces import UpdateNotCalled
+from zope.i18nmessageid import MessageFactory
+_ = MessageFactory('groupserver')
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from gs.group.base import GroupContentProvider
 from .privacy import MessagesPrivacy
@@ -29,17 +31,17 @@ class GSPostPrivacyContentProvider(GroupContentProvider):
         messagesPrivacy = MessagesPrivacy(self.context)
         self.visibility = messagesPrivacy.visibility
 
-        if messagesPrivacy .anon:
-            self.webVisibility = '<strong>Anyone</strong> &#8213; '\
-              'including search engines and people who are not '\
-              'logged in &#8213;'
-            self.emailVisibility = '<strong>group</strong> members'
-        elif messagesPrivacy .site:
-            self.webVisibility = '<strong>Group</strong> members '\
-              'and <strong>site</strong> members'
-            self.emailVisibility = '<strong>group</strong> members'
+        if messagesPrivacy.anon:
+            self.webVisibility = _('<strong>Anyone</strong> &#8213; including '
+                            'search engines and people who are not logged in '
+                            '&#8213;')
+            self.emailVisibility = _('<strong>group</strong> members')
+        elif messagesPrivacy.site:
+            self.webVisibility = _('<strong>Group</strong> members and '
+                                    '<strong>site</strong> members')
+            self.emailVisibility = _('<strong>group</strong> members')
         else:
-            self.webVisibility = '<strong>Group</strong> members'
+            self.webVisibility = _('<strong>Group</strong> members')
             self.emailVisibility = ''
 
         self.__updated = True
