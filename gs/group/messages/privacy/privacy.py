@@ -20,7 +20,6 @@ from gs.group.privacy import get_visibility, PERM_ANN, PERM_GRP, PERM_SIT
 class MessagesPrivacy(object):
 
     def __init__(self, messages):
-        print messages
         self.context = self.messages = messages
 
     @Lazy
@@ -40,6 +39,6 @@ class MessagesPrivacy(object):
     def visibility(self):
         d = {PERM_ANN: 'public',
             PERM_GRP: 'private',
-            PERM_SIT: 'restricted to site members', }
+            PERM_SIT: 'restricted', }
         retval = d.get(self.permission, 'odd')
         return retval
