@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,12 +11,11 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
-from __future__ import unicode_literals
+############################################################################
+from __future__ import unicode_literals, absolute_import
 from zope.cachedescriptors.property import Lazy
-from zope.i18nmessageid import MessageFactory
-_ = MessageFactory('groupserver')
-from gs.group.privacy import get_visibility, PERM_ANN, PERM_GRP, PERM_SIT
+from gs.group.privacy import (get_visibility, PERM_ANN, PERM_GRP, PERM_SIT)
+from . import GSMessageFactory as _
 
 
 class MessagesPrivacy(object):
@@ -40,7 +39,7 @@ class MessagesPrivacy(object):
     @Lazy
     def visibility(self):
         d = {PERM_ANN: _('public'),
-            PERM_GRP: _('private'),
-            PERM_SIT: _('restricted'), }
+             PERM_GRP: _('private'),
+             PERM_SIT: _('restricted'), }
         retval = d.get(self.permission, _('odd'))
         return retval

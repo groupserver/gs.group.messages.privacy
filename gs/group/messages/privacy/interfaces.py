@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,14 +11,16 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import unicode_literals
 from zope.interface import Interface
 from zope.schema import ASCIILine
 
 
 class IGSPostPrivacyContentProvider(Interface):
-    pageTemplateFileName = ASCIILine(title="Page Template File Name",
-        description="The name of the ZPT file that is used to render the post.",
+    pageTemplateFileName = ASCIILine(
+        title="Page Template File Name",
+        description="The name of the ZPT file that is used to render the "
+                    "post.",
         required=False,
-        default="browser/templates/dialog.pt".encode('ascii', 'ignore'))
+        default=b"browser/templates/dialog.pt")

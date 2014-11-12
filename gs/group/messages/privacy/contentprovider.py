@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-##############################################################################
+############################################################################
 #
 # Copyright © 2013, 2014 OnlineGroups.net and Contributors.
 # All Rights Reserved.
@@ -11,14 +11,13 @@
 # WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
 # FOR A PARTICULAR PURPOSE.
 #
-##############################################################################
+############################################################################
 from __future__ import absolute_import, unicode_literals
 from zope.contentprovider.interfaces import UpdateNotCalled
-from zope.i18nmessageid import MessageFactory
-_ = MessageFactory('groupserver')
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from gs.group.base import GroupContentProvider
 from .privacy import MessagesPrivacy
+from . import GSMessageFactory as _
 
 
 class GSPostPrivacyContentProvider(GroupContentProvider):
@@ -32,13 +31,13 @@ class GSPostPrivacyContentProvider(GroupContentProvider):
         self.visibility = messagesPrivacy.visibility
 
         if messagesPrivacy.anon:
-            self.webVisibility = _('<strong>Anyone</strong> &#8213; including '
-                            'search engines and people who are not logged in '
-                            '&#8213;')
+            self.webVisibility = _(
+                '<strong>Anyone</strong> &#8213; including search engines '
+                'and people who are not logged in &#8213;')
             self.emailVisibility = _('<strong>group</strong> members')
         elif messagesPrivacy.site:
             self.webVisibility = _('<strong>Group</strong> members and '
-                                    '<strong>site</strong> members')
+                                   '<strong>site</strong> members')
             self.emailVisibility = _('<strong>group</strong> members')
         else:
             self.webVisibility = _('<strong>Group</strong> members')
@@ -51,6 +50,6 @@ class GSPostPrivacyContentProvider(GroupContentProvider):
             raise UpdateNotCalled
         pageTemplate = PageTemplateFile(self.pageTemplateFileName)
         retval = pageTemplate(visibility=self.visibility,
-                                webVisibility=self.webVisibility,
-                                emailVisibility=self.emailVisibility)
+                              webVisibility=self.webVisibility,
+                              emailVisibility=self.emailVisibility)
         return retval
