@@ -6,6 +6,10 @@ Changelog
 
 * Added adaptors to the ``MessagesPrivacy`` class from the group
   and messages objects
+* Switching to GitHub_ as the primary repository
+* Naming the reStructuredText files as such
+
+.. _GitHub: https://github.com/groupserver/gs.group.messages.privacy
 
 2.1.0 (2014-02-11)
 ------------------
