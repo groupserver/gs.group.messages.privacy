@@ -65,6 +65,7 @@ setup(
         'Zope2',
         'gs.group.base',
         'gs.group.privacy',
+        'Products.XWFMailingListManager',
     ],
     entry_points="""
     # -*- Entry points: -*-
