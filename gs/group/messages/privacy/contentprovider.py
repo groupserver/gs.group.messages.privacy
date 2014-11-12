@@ -16,7 +16,7 @@ from __future__ import absolute_import, unicode_literals
 from zope.contentprovider.interfaces import UpdateNotCalled
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 from gs.group.base import GroupContentProvider
-from .privacy import MessagesPrivacy
+from .interfaces import IMessagesPrivacy
 from . import GSMessageFactory as _
 
 
@@ -27,7 +27,7 @@ class GSPostPrivacyContentProvider(GroupContentProvider):
         self.__updated = False
 
     def update(self):
-        messagesPrivacy = MessagesPrivacy(self.context)
+        messagesPrivacy = IMessagesPrivacy(self.context)
         self.visibility = messagesPrivacy.visibility
 
         if messagesPrivacy.anon:

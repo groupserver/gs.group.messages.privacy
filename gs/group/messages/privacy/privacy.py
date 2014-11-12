@@ -15,13 +15,24 @@
 from __future__ import unicode_literals, absolute_import
 from zope.cachedescriptors.property import Lazy
 from gs.group.privacy import (get_visibility, PERM_ANN, PERM_GRP, PERM_SIT)
+from Products.XWFMailingListManager.interfaces import IGSMessagesFolder
 from . import GSMessageFactory as _
 
 
 class MessagesPrivacy(object):
 
     def __init__(self, messages):
+        if not IGSMessagesFolder.providedBy(messages):
+            m = '{0} does not provide the IGSMessagesFolder interface'
+            msg = m.format(messages)
+            raise TypeError(msg)
         self.context = self.messages = messages
+
+    @classmethod
+    def from_group(cls, group):
+        messages = getattr(group.aq_explicit, 'messages')
+        retval = cls(messages)
+        return retval
 
     @Lazy
     def permission(self):
@@ -43,3 +54,8 @@ class MessagesPrivacy(object):
              PERM_SIT: _('restricted'), }
         retval = d.get(self.permission, _('odd'))
         return retval
+
+
+def from_group(grp):
+    'A factory-function for the ZCML'
+    return MessagesPrivacy.from_group(grp)

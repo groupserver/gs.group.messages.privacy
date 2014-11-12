@@ -14,7 +14,7 @@
 ############################################################################
 from __future__ import unicode_literals
 from zope.interface import Interface
-from zope.schema import ASCIILine
+from zope.schema import ASCIILine, TextLine
 
 
 class IGSPostPrivacyContentProvider(Interface):
@@ -24,3 +24,11 @@ class IGSPostPrivacyContentProvider(Interface):
                     "post.",
         required=False,
         default=b"browser/templates/dialog.pt")
+
+
+class IMessagesPrivacy(Interface):
+    'The privacy for the messages in a group'
+    visibility = TextLine(
+        title='Visibility',
+        description='The visibility of the messages',
+        required=True)

@@ -30,4 +30,16 @@
     provides="zope.contentprovider.interfaces.IContentProvider"
     name="groupserver.PostPrivacy"/>
 
+  <!-- Messages privacy adaptors-->
+  <class class=".privacy.MessagesPrivacy">
+    <implements interface=".interfaces.IMessagesPrivacy"/>
+  </class>
+  <adapter
+    for="Products.XWFMailingListManager.interfaces.IGSMessagesFolder"
+    provides=".interfaces.IMessagesPrivacy"
+    factory=".privacy.MessagesPrivacy" />
+  <adapter
+    for="gs.group.base.interfaces.IGSGroupFolder"
+    provides=".interfaces.IMessagesPrivacy"
+    factory=".privacy.from_group" />
 </configure>
